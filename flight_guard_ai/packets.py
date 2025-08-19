@@ -20,7 +20,6 @@ class MessageType(Enum):
 
 
 @dataclass
-
 class Ping:
     """Signed ping used for neighbor discovery."""
 

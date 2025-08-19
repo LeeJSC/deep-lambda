@@ -26,7 +26,6 @@ that mirror the Python reference implementation. The `radio` module
 abstracts the transceiver so the same code runs on different avionics
 HALs.
 
-
 Key points:
 
 1. **Secure Boot**: Bootloader validates firmware signature before

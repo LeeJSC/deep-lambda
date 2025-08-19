@@ -25,9 +25,12 @@ def main() -> None:
     )
     packet = DataPacket(header=header, body=DataBody())
     packet.header.payload_hash = packet.calc_hash()
-    node.handle_packet(packet)
+
+    node.handle_packet(packet, ("127.0.0.1", 9999))
 
     dummy_peer = b"\x00" * 32
-    node.neighbors[dummy_peer] = NeighborInfo(last_seen=int(time.time()), rtt_ms=6000)
+    node.neighbors[dummy_peer] = NeighborInfo(
+        last_seen=int(time.time()), rtt_ms=6000, addr=("127.0.0.1", 9999)
+    )
     node.monitor_latency()
 

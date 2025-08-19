@@ -1,7 +1,6 @@
 use crate::{crypto, handshake, identity::Identity, packets::{DataPacket, DataRelayHeader, DataBody, SECTION_SIZE}};
 use crate::radio::Radio;
 use rand_core::{RngCore, CryptoRng};
-use x25519_dalek::PublicKey;
 use heapless::Vec;
 
 pub struct Node<R: Radio, RNG: RngCore + CryptoRng> {
@@ -14,9 +13,9 @@ pub struct Node<R: Radio, RNG: RngCore + CryptoRng> {
 impl<R: Radio, RNG: RngCore + CryptoRng> Node<R, RNG> {
     pub fn new(radio: R, mut rng: RNG) -> Self {
         let id = Identity::generate(&mut rng);
-        // For demo purposes, self-derive session key using own public key.
-        let peer = PublicKey::from(id.public_key());
-        let hs = handshake::initiate(&id, &peer, &mut rng);
+        // For demo purposes, self-derive session key using own X25519 key.
+        let hs = handshake::initiate(&id, &id.x25519_public, &mut rng);
+
         Node { radio, rng, identity: id, session_key: hs.session_key }
     }
 

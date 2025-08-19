@@ -57,3 +57,30 @@ def initiate_handshake(identity: Identity, peer_public_key: bytes) -> HandshakeR
         eph_public=eph_public,
         signature=signature,
     )
+
+
+def respond_handshake(
+    identity: Identity, peer_eph_public: bytes, signature: bytes, peer_cert: bytes
+) -> bytes:
+    """Verify the peer's ephemeral key and derive the shared session key.
+
+    This is the responder's side of the simple handshake.  The peer sends
+    an ephemeral X25519 public key along with a signature produced using
+    its Ed25519 identity.  After verifying the signature, the responder
+    combines the peer's ephemeral key with its own static X25519 key to
+    derive the session key via HKDF.
+    """
+
+    if not Identity.verify_peer(peer_cert, peer_eph_public, signature):
+        raise ValueError("bad handshake signature")
+
+    peer_pub = x25519.X25519PublicKey.from_public_bytes(peer_eph_public)
+    shared = identity.x25519_private.exchange(peer_pub)
+
+    return HKDF(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=None,
+        info=b"flight-guard-ai",
+    ).derive(shared)
+
