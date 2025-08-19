@@ -8,8 +8,6 @@ code rather than bespoke cryptography.
 """
 from dataclasses import dataclass
 from typing import Optional
-
-
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import ed25519
 

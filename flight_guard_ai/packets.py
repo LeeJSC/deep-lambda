@@ -39,7 +39,7 @@ class Ping:
 @dataclass
 class Pong(Ping):
     """Response to a :class:`Ping`.  Shares the same layout."""
-    pass
+
 
 
 @dataclass
