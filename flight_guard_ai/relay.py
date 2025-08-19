@@ -1,10 +1,12 @@
 """Relay logic for forwarding packets between aircraft."""
 from dataclasses import dataclass, field
 from typing import Dict
+
 import time
 
 from .identity import Identity
 from .packets import Ack, DataPacket, RelayPathEntry
+
 
 
 @dataclass
@@ -15,6 +17,7 @@ class NeighborInfo:
 
 @dataclass
 class RelayNode:
+
     """Minimal relay node implementation."""
 
     identity: Identity
@@ -59,3 +62,4 @@ class RelayNode:
             if info.rtt_ms > 5000:
                 # Placeholder for sending ping to discover closer nodes
                 pass
+
