@@ -1,3 +1,4 @@
+
 """Handshake routines using Noise-like patterns.
 
 The real system can be mapped onto the Noise IK pattern used by
@@ -82,3 +83,4 @@ def respond_handshake(
         salt=None,
         info=b"flight-guard-ai",
     ).derive(shared)
+

@@ -15,6 +15,7 @@ impl<R: Radio, RNG: RngCore + CryptoRng> Node<R, RNG> {
         let id = Identity::generate(&mut rng);
         // For demo purposes, self-derive session key using own X25519 key.
         let hs = handshake::initiate(&id, &id.x25519_public, &mut rng);
+
         Node { radio, rng, identity: id, session_key: hs.session_key }
     }
 

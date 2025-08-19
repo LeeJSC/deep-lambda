@@ -2,7 +2,6 @@ use blake3;
 use x25519_dalek::{PublicKey, StaticSecret};
 use rand_core::{CryptoRng, RngCore};
 use ed25519_dalek::{Signature, VerifyingKey};
-
 use crate::identity::Identity;
 
 pub struct HandshakeResult {
@@ -29,6 +28,7 @@ pub fn initiate<R: RngCore + CryptoRng>(
     }
 }
 
+
 /// Respond to a handshake initiated by a peer.
 /// Returns the derived session key if the signature verifies.
 pub fn respond(
@@ -43,3 +43,4 @@ pub fn respond(
     let shared = id.diffie_hellman(peer_eph_pubkey);
     Some(blake3::derive_key("flight-guard-ai", &shared))
 }
+

@@ -2,10 +2,12 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum
+
 from typing import List
 import hashlib
 
 from .identity import Identity
+
 
 SECTION_SIZE = 4096
 
@@ -36,6 +38,7 @@ class Ping:
 @dataclass
 class Pong(Ping):
     """Response to a :class:`Ping`.  Shares the same layout."""
+
 
 
 @dataclass
@@ -87,6 +90,7 @@ class DataPacket:
     body: DataBody
 
     def calc_hash(self) -> bytes:
+
         """Return a BLAKE2s hash over deterministically serialized fields."""
         h = hashlib.blake2s()
         h.update(self.header.message_type.value.to_bytes(1, "big"))
@@ -94,6 +98,7 @@ class DataPacket:
         for entry in self.header.relay_path:
             h.update(entry.aircraft_id)
             h.update(entry.hop_number.to_bytes(2, "big"))
+
         h.update(self.body.audio_enc)
         h.update(self.body.log_enc)
         h.update(self.body.decoy1_enc)

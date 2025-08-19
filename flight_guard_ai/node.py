@@ -1,4 +1,5 @@
 """Main event loop tying together handshake, relay, and packet I/O."""
+
 import time
 
 from .identity import Identity
@@ -24,6 +25,7 @@ def main() -> None:
     )
     packet = DataPacket(header=header, body=DataBody())
     packet.header.payload_hash = packet.calc_hash()
+
     node.handle_packet(packet, ("127.0.0.1", 9999))
 
     dummy_peer = b"\x00" * 32
@@ -31,3 +33,4 @@ def main() -> None:
         last_seen=int(time.time()), rtt_ms=6000, addr=("127.0.0.1", 9999)
     )
     node.monitor_latency()
+
