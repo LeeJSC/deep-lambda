@@ -25,6 +25,7 @@ same software stack and can act as an emitter or receiver.
 | `relay.py`      | Maintains neighbor state and forwards packets |
 | `node.py`       | Application entry point tying all pieces together |
 
+
 ## Security Foundations
 
 Flight Guard AI leverages well-vetted open source cryptographic
@@ -35,6 +36,7 @@ exchange.  ChaCha20‑Poly1305 provides authenticated encryption for the
 four fixed-size packet sections while BLAKE2s hashes uniquely identify
 payloads.  Certificates are short‑lived and checked against revocation
 lists before accepting a peer.
+
 
 ## Protocol Highlights
 

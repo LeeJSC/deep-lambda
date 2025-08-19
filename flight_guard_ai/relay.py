@@ -1,11 +1,13 @@
 """Relay logic for forwarding packets between aircraft."""
 from dataclasses import dataclass, field
 from typing import Dict
+
 import os
 import time
 
 from .identity import Identity
 from .packets import Ack, DataPacket, RelayPathEntry, Ping
+
 
 
 @dataclass
@@ -54,6 +56,7 @@ class RelayNode:
         ack.sign(self.identity)
         # Real implementation would transmit `ack` over the network
 
+
     def send_ping(self, peer: bytes) -> None:
         """Send a signed ping to a neighbor."""
         nonce = os.urandom(32)
@@ -66,8 +69,10 @@ class RelayNode:
         # Real implementation would transmit `ping` over the network
         self.neighbors[peer] = NeighborInfo(last_seen=int(time.time()), rtt_ms=0)
 
+
     def monitor_latency(self) -> None:
         """Check time-of-flight and seek better neighbors if needed."""
         for peer, info in list(self.neighbors.items()):
             if info.rtt_ms > 5000:
                 self.send_ping(peer)
+

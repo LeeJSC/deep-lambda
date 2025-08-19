@@ -1,4 +1,5 @@
 """Main event loop tying together handshake, relay, and packet I/O."""
+
 import time
 
 from .identity import Identity
@@ -29,3 +30,4 @@ def main() -> None:
     dummy_peer = b"\x00" * 32
     node.neighbors[dummy_peer] = NeighborInfo(last_seen=int(time.time()), rtt_ms=6000)
     node.monitor_latency()
+
