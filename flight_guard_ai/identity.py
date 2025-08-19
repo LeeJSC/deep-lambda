@@ -4,8 +4,8 @@
 Provides helpers for loading keys, signing messages and verifying peer
 certificates.  The implementation intentionally uses modern primitives
 from the `cryptography` project to leverage well reviewed, open-source
-code rather than bespoke cryptography."""
-
+code rather than bespoke cryptography.
+"""
 from dataclasses import dataclass
 from typing import Optional
 
@@ -18,7 +18,6 @@ from cryptography.hazmat.primitives.asymmetric import ed25519
 @dataclass
 class Identity:
     """Represents an aircraft cryptographic identity."""
-
 
     private_key: ed25519.Ed25519PrivateKey
     certificate: bytes  # DER or raw public key bytes

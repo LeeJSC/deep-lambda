@@ -20,8 +20,12 @@ certification time and leverages existing toolchains.
 ## Firmware Strategy
 
 Firmware is written in `no_std` Rust for memory safety and low
-latency. The example in `firmware/firmware.rs` shows a minimal loop
-that reads from a radio driver and hands packets to the mesh stack.
+latency. The `firmware` crate implements key management, X25519
+handshakes, ChaCha20‑Poly1305 encryption, and fixed-size relay packets
+that mirror the Python reference implementation. The `radio` module
+abstracts the transceiver so the same code runs on different avionics
+HALs.
+
 
 Key points:
 

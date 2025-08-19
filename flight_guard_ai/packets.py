@@ -63,7 +63,6 @@ class Ack:
 
 
 @dataclass
-
 class RelayPathEntry:
     aircraft_id: bytes
     hop_number: int

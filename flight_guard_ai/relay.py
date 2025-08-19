@@ -1,7 +1,6 @@
 """Relay logic for forwarding packets between aircraft."""
 from dataclasses import dataclass, field
 from typing import Dict
-
 import time
 
 from .identity import Identity
@@ -17,7 +16,6 @@ class NeighborInfo:
 
 @dataclass
 class RelayNode:
-
     """Minimal relay node implementation."""
 
     identity: Identity
