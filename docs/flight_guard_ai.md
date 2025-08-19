@@ -25,6 +25,19 @@ same software stack and can act as an emitter or receiver.
 | `relay.py`      | Maintains neighbor state and forwards packets |
 | `node.py`       | Application entry point tying all pieces together |
 
+
+## Security Foundations
+
+Flight Guard AI leverages well-vetted open source cryptographic
+libraries instead of custom algorithms. Identities are represented by
+Ed25519 certificates kept in TPM or HSM hardware.  Handshakes follow the
+Noise IK pattern (as popularized by WireGuard) using X25519 key
+exchange.  ChaCha20‑Poly1305 provides authenticated encryption for the
+four fixed-size packet sections while BLAKE2s hashes uniquely identify
+payloads.  Certificates are short‑lived and checked against revocation
+lists before accepting a peer.
+
+
 ## Protocol Highlights
 
 1. **Ping/Pong**: Aircraft announce presence with signed pings.
