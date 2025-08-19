@@ -7,6 +7,7 @@ from .identity import Identity
 from .packets import Ack, DataPacket, RelayPathEntry
 
 
+
 @dataclass
 class NeighborInfo:
     last_seen: int
@@ -59,3 +60,4 @@ class RelayNode:
             if info.rtt_ms > 5000:
                 # Placeholder for sending ping to discover closer nodes
                 pass
+

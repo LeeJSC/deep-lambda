@@ -1,3 +1,4 @@
+
 """Handshake routines using Noise-like patterns.
 
 The real system can be mapped onto the Noise IK pattern used by

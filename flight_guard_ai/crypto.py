@@ -1,6 +1,7 @@
 """Cryptographic helper functions."""
 from typing import Tuple
 
+
 from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
 
 

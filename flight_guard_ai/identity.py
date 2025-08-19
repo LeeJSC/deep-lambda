@@ -1,5 +1,6 @@
 """Identity management for Flight Guard AI.
 
+
 Provides helpers for loading keys, signing messages and verifying peer
 certificates.  The implementation intentionally uses modern primitives
 from the `cryptography` project to leverage well reviewed, open-source
@@ -8,8 +9,10 @@ code rather than bespoke cryptography.
 from dataclasses import dataclass
 from typing import Optional
 
+
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import ed25519
+
 
 
 @dataclass
@@ -54,3 +57,4 @@ class Identity:
             return True
         except Exception:
             return False
+
